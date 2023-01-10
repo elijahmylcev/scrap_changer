@@ -9,9 +9,10 @@ BASE_URL = os.getenv('BASE_URL')
 data_arr = os.getenv('ROUNDS')
 ROUNDS = json.loads(data_arr)
 
-res = requests.get(BASE_URL+ROUNDS[1])
+res = requests.get(BASE_URL+ROUNDS[0])
 soup = BeautifulSoup(res.text, 'html.parser')
 table_rates = soup.find('div', {'id': 'rates_block'}).find_all('tr')
-price = table_rates[1].find('td', class_='bi').find('div', class_='fs').text
-# print(table_rates[0])
-print(price)
+price_out = table_rates[1].findAll('td', class_='bi')[0].text
+price_income = table_rates[1].findAll('td', class_='bi')[1].text
+print(price_out)
+print(price_income)
