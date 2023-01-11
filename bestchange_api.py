@@ -47,8 +47,9 @@ if __name__ == '__main__':
     # Варианты валют, которые могут быть промежуточными результатами круга
     arr = get_intermediate_currencies(info, 'name_currency', 'RUB')
     now_best_solution = check_best(rates_df, 105, 66, [208])
-    if now_best_solution.best_result >= 7.6:
-      windows_notification('Можно выгодно обменять!', f'Круг на bestchange через покупку ₮ за ₽ и покупку ₸ за ₮ даст приятное соотношение: \n₽ конвертируется в {now_best_solution.best_result}₸ \n\n "https://www.bestchange.ru/"')
+    rate = now_best_solution['best_result']
+    if rate >= 7.6:
+      windows_notification('Можно выгодно обменять!', f'Круг на bestchange через покупку ₮ за ₽ и покупку ₸ за ₮ даст приятное соотношение: \n₽ конвертируется в {rate}₸ \n\n "https://www.bestchange.ru/"')
     print(now_best_solution)
     print('<-- Ждем 10 минут... -->')
     time.sleep(600)

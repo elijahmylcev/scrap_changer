@@ -6,5 +6,5 @@ def windows_notification(title:str,text:str):
   notification.notify(
     title=title,
     message=text,
-    timeout=10  # seconds
+    timeout=60  # seconds
 )
