@@ -3,4 +3,4 @@
 *.csv
 *.xlsx
 /currency
-/__pycache__
+*/__pycache__

@@ -5,7 +5,7 @@ import os
 import pandas as pd
 import numpy as np
 from dotenv import load_dotenv
-from functions import get_intermediate_currencies
+from functions import get_intermediate_currencies, target_function, check_best
 import csv
 
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
   # getData(URL_API)
   rates_df = create_rates_df('./currency/bm_rates.dat')
   info = create_info_df('./currency/bm_cy.dat')
-  first_calc(rates_df, 105, 208)
-  print(get_intermediate_currencies(info, 'name_currency', 'RUB'))
-  
+  # Варианты валют, которые могут быть промежуточными результатами круга
+  arr = get_intermediate_currencies(info, 'name_currency', 'RUB')
+  print(check_best(rates_df, 105, 66, arr))
   
