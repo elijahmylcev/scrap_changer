@@ -9,7 +9,7 @@ def check_best(df, initial_currency, final_currency, intermediate_currencies):
     start_price = target_function(df, initial_currency, intermediate_currency)
     end_price = target_function(df, intermediate_currency, final_currency, out=False)
     if start_price and end_price:
-      result = end_price / start_price
+      result = round(end_price / start_price, 2)
     else:
       result = 0
     if result > best_result:

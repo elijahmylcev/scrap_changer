@@ -4,7 +4,9 @@ import io
 import os
 import pandas as pd
 from dotenv import load_dotenv
-from functions import get_intermediate_currencies, target_function, check_best
+from functions import get_intermediate_currencies, check_best
+import time
+
 
 
 load_dotenv()
@@ -38,10 +40,13 @@ def first_calc(rates_df, id_currency_star, id_currency_end=None):
 
 
 if __name__ == '__main__':
-  getData(URL_API)
-  rates_df = create_rates_df('./currency/bm_rates.dat')
-  info = create_info_df('./currency/bm_cy.dat')
-  # Варианты валют, которые могут быть промежуточными результатами круга
-  arr = get_intermediate_currencies(info, 'name_currency', 'RUB')
-  print(check_best(rates_df, 105, 66, arr))
+  while True:
+    getData(URL_API)
+    rates_df = create_rates_df('./currency/bm_rates.dat')
+    info = create_info_df('./currency/bm_cy.dat')
+    # Варианты валют, которые могут быть промежуточными результатами круга
+    arr = get_intermediate_currencies(info, 'name_currency', 'RUB')
+    print(check_best(rates_df, 105, 66, [208]))
+    print('<-- Ждем 10 минут... -->')
+    time.sleep(600)
   
