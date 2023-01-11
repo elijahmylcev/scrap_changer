@@ -1,2 +1,3 @@
 from .target_function import target_function
 from .check_best import check_best
+from .get_intermediate_currencies import get_intermediate_currencies

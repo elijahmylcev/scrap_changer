@@ -8,3 +8,7 @@ def check_best(df, initial_currency, final_currency, intermediate_currencies):
     if result > best_result:
       best_result = result
       best_intermediate_currency = intermediate_currency
+  return {
+    'best_intermediate': best_intermediate_currency,
+    'best_result': best_result
+  }
