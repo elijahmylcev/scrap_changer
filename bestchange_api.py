@@ -4,7 +4,7 @@ import io
 import os
 import pandas as pd
 from dotenv import load_dotenv
-from functions import get_intermediate_currencies, check_best
+from functions import get_intermediate_currencies, check_best, windows_notification
 import time
 
 
@@ -46,7 +46,10 @@ if __name__ == '__main__':
     info = create_info_df('./currency/bm_cy.dat')
     # Варианты валют, которые могут быть промежуточными результатами круга
     arr = get_intermediate_currencies(info, 'name_currency', 'RUB')
-    print(check_best(rates_df, 105, 66, [208]))
+    now_best_solution = check_best(rates_df, 105, 66, [208])
+    if now_best_solution.best_result >= 7.6:
+      windows_notification('Можно выгодно обменять!', f'Круг на bestchange через покупку ₮ за ₽ и покупку ₸ за ₮ даст приятное соотношение: \n₽ конвертируется в {now_best_solution.best_result}₸ \n\n "https://www.bestchange.ru/"')
+    print(now_best_solution)
     print('<-- Ждем 10 минут... -->')
     time.sleep(600)
   
