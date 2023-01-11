@@ -3,10 +3,8 @@ import zipfile
 import io
 import os
 import pandas as pd
-import numpy as np
 from dotenv import load_dotenv
 from functions import get_intermediate_currencies, target_function, check_best
-import csv
 
 
 load_dotenv()
@@ -34,13 +32,13 @@ def create_rates_df(path):
   return df
 
 def first_calc(rates_df, id_currency_star, id_currency_end=None):
- search_df = rates_df[(rates_df['ID отдаваемой валюты'] == id_currency_star) & (rates_df['ID получаемой валюты'] == id_currency_end)]
- search_df = min(search_df['Курс обмена (отдать)'])
- print(search_df)
+  search_df = rates_df[(rates_df['ID отдаваемой валюты'] == id_currency_star) & (rates_df['ID получаемой валюты'] == id_currency_end)]
+  search_df = min(search_df['Курс обмена (отдать)'])
+  print(search_df)
 
 
 if __name__ == '__main__':
-  # getData(URL_API)
+  getData(URL_API)
   rates_df = create_rates_df('./currency/bm_rates.dat')
   info = create_info_df('./currency/bm_cy.dat')
   # Варианты валют, которые могут быть промежуточными результатами круга
